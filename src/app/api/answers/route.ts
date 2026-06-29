@@ -19,7 +19,7 @@ export async function PATCH(req: NextRequest) {
 
   const { data, error } = await supabaseAdmin
     .from('game_state')
-    .update({ ...body, updated_at: new Date().toISOString() })
+    .update({ ...body, updated_at: new Date().toISOString() } as any)
     .eq('id', 1)
     .select()
     .single()

@@ -9,4 +9,100 @@
 body {
   margin: 0;
   padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-[#0f0f3d] text-white min-h-screen;
+  }
+
+  input, button {
+    @apply transition-all duration-200;
+  }
+
+  button:active {
+    @apply scale-95;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-white/5 border border-white/10 rounded-2xl p-4;
+  }
+
+  .btn-primary {
+    @apply bg-yellow-400 text-[#0f0f3d] font-bold py-3 px-6 rounded-xl hover:bg-yellow-300 disabled:opacity-50;
+  }
+
+  .btn-secondary {
+    @apply bg-white/10 text-white py-3 px-6 rounded-xl hover:bg-white/20;
+  }
+
+  .input-field {
+    @apply w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-yellow-400 focus:ring-1 focus:ring-yellow-400/50;
+  }
+
+  .badge {
+    @apply bg-[#1a1a6e] text-yellow-400 text-xs px-2 py-1 rounded-full;
+  }
+
+  .answer-card-hidden {
+    @apply bg-[#8b0000] rounded-2xl p-4 flex flex-col justify-between transition-all duration-500;
+  }
+
+  .answer-card-revealed {
+    @apply bg-green-800 rounded-2xl p-4 flex flex-col justify-between transition-all duration-500;
+  }
+
+  .strike-active {
+    @apply text-red-500 scale-110 transition-all;
+  }
+
+  .strike-inactive {
+    @apply text-white/20 transition-all;
+  }
+}
+
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .glow-yellow {
+    box-shadow: 0 0 20px rgba(250, 204, 21, 0.3);
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.4s ease-out;
+  }
+
+  .animate-pop {
+    animation: pop 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pop {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }

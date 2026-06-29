@@ -2,17 +2,20 @@
  * scripts/generate-questions.ts
  * Run ONCE before your meeting: npx ts-node scripts/generate-questions.ts
  *
- * Loops through all 18 members, calls Anthropic API for each,
+ * Loops through all 18 members, calls DeepSeek API for each,
  * generates a funny personalized Family Feud question + 6 answers,
  * saves everything to Supabase.
  */
 
-import Anthropic from '@anthropic-ai/sdk'
+import OpenAI from 'openai'
 import { createClient } from '@supabase/supabase-js'
 import * as dotenv from 'dotenv'
 dotenv.config({ path: '.env.local' })
 
-const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
+const deepseek = new OpenAI({
+  apiKey: process.env.DEEPSEEK_API_KEY,
+  baseURL: 'https://api.deepseek.com',
+})
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.SUPABASE_SERVICE_ROLE_KEY!
