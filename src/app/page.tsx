@@ -125,17 +125,17 @@ export default function HomePage() {
       {/* Leaderboard ticker */}
       <LeaderboardTicker presentationId={presentation.id} />
 
-      {/* Family Feud overlay when a game round is active */}
+      {/* Family Feud drawer — slides up from bottom when game round active */}
       {activeQuestionId && (
-        <FeudBoard
+        <FeudDrawer
           questionId={activeQuestionId}
-          isHost={false}
+          isHost={true}
+          onClose={() => setActiveQuestionId(null)}
         />
       )}
 
       {/* Presentation area with arrows */}
-      {!activeQuestionId && (
-      <div className="flex-1 flex items-center justify-center relative px-4 py-6">
+      <div className={`flex-1 flex items-center justify-center relative px-4 py-6 ${activeQuestionId ? 'max-h-[45vh]' : ''}`}>
         {/* Left arrow */}
         <button
           onClick={prevSlide}
@@ -186,7 +186,6 @@ export default function HomePage() {
           ▶
         </button>
       </div>
-      )}
 
       {/* Bottom bar — slide dots + join code */}
       <div className="border-t border-white/10 px-6 py-3 flex items-center justify-between">
